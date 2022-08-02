@@ -11,57 +11,88 @@ function getComputerChoice() {
 let userScore = 0;
 let computerScore = 0;
 
-function playRound() {
+picks = document.querySelector("#picks")
+result = document.querySelector("#result")
+score = document.querySelector("#score")
+
+function playRound(playerSelection) {
     computerSelection = getComputerChoice()
-    playerSelection = prompt("Rock / Paper / Scissors").toLowerCase()
-    alert("You picked " + playerSelection + ", computer picked " + computerSelection)
+    // playerSelection = prompt("Rock / Paper / Scissors").toLowerCase()
+    picks.textContent = "You picked " + playerSelection + ", computer picked " + computerSelection;
+    result.style.fontWeight = "bold"
+    winner.textContent = ""
     if(playerSelection == "rock"){
         if(computerSelection == "rock") {
-            alert("Tie")
+            result.textContent = "Tie"
         }
         else if(computerSelection == "paper") {
-            alert("Lose")
+            result.textContent = "Lose"
             computerScore += 1
         }
         else {
-            alert("Win")
+            result.textContent = "Win"
             userScore += 1;
         }
     }
     else if (playerSelection == "paper") {
         if(computerSelection == "rock") {
-            alert("Win")
+            result.textContent = "Win"
             userScore += 1;
         }
         else if(computerSelection == "paper") {
-            alert("Tie")
+            result.textContent = "Tie"
         }
         else {
-            alert("Lose")
+            result.textContent = "Lose"
             computerScore += 1;
         }
     }
     else {
         if(computerSelection == "rock") {
-            alert("Lose")
+            result.textContent = "Lose"
             computerScore += 1;
         }
         else if(computerSelection == "paper") {
-            alert("Win")
+            result.textContent = "Win"
             userScore += 1;
         }
         else {
-            alert("Tie")
+            result.textContent = "Tie"
         }
+    }
+    score.textContent = "Your score: " + userScore + " Computer score: " + computerScore;
+    if(userScore == 5) {
+        winner.textContent = "Congratulations, you win!";
+        userScore = 0;
+        computerScore = 0;
+    }
+    else if(computerScore == 5) {
+        winner.textContent = "Unfortunately, you lose!"
+        userScore = 0;
+        computerScore = 0;
     }
 }
 
 
-function game() {
-    while(userScore < 5 && computerScore < 5) {
+function game(t) {
+    while(userScore < t && computerScore < t) {
         playRound()
         console.log(userScore,computerScore)
     }
 }
-game()
+
+function Printer(){
+    console.log("I am iad")
+}
+
+
+
+// buttons = document.querySelectorAll('button');
+// buttons.forEach((button) => {
+//     button.addEventListener('click', playRound);
+//   });
+
+// rock = document.querySelector("#rock")
+// paper = document.querySelector("#paper")
+// scissors = document.querySelector("#scissors")
 
